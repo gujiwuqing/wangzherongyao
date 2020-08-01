@@ -43,7 +43,6 @@
     .el-breadcrumb{
         @include wh(60%,40px);
         line-height: 40px;
-        margin-bottom: 10px;
     }
     /deep/.el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
         color: #97a8be;

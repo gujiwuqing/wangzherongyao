@@ -49,10 +49,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin: 0 20px;
   }
   header{
     display: flex;
     height: 40px;
     align-items: center;
+    i{
+      margin-right: 20px;
+    }
   }
 </style>

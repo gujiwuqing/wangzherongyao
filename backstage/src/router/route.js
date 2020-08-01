@@ -14,6 +14,11 @@ const routes = [
         }]
     },
     {
+        path: '/login',
+        name: 'login',
+        component: ()=>import('_v/login'),
+    },
+    {
         path:'/category',
         component:layout,
         redirect: '/category/list',

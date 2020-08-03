@@ -5,6 +5,7 @@ module.exports = app=>{
     const User = require('../model/user')
     const jwt = require('jsonwebtoken');
     const secret = require('../utils/config')
+    const verifyToken = require('../utils/verifyToken')
     router.post('/register',async (req,res)=>{
        const {username,password,email} = req.body
        const userEmail =  await User.findOne({email})
@@ -48,6 +49,10 @@ module.exports = app=>{
                msg:err.message
            })
         }
+    })
+//个人信息接口
+    router.get('/user',verifyToken,async (req,res)=>{
+        console.log(req.query)
     })
     app.use(router)
 }

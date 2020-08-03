@@ -1,67 +1,105 @@
-module.exports = app=>{
+module.exports = app => {
     const express = require('express')
     const router = express.Router()
     const Category = require('../model/category')
-    const  verifyToken = require('../utils/verifyToken')
+    const verifyToken = require('../utils/verifyToken')
     const assert = require('http-assert')
-    router.post('/category/add',verifyToken,async (req,res)=>{
-        const {name} = req.body
+
+    router.get('/category/info',verifyToken,async(req,res)=>{
+        const {id} = req.query
+        const model = await Category.findById({_id:id})
+        console.log(model)
+        res.send({
+            status: 200,
+            msg: '',
+            model:model
+        })
+    })
+
+
+    router.post('/category/add', verifyToken, async (req, res) => {
+        const {
+            name
+        } = req.body
         console.log(req.body)
-        const model =  await Category.findOne({name})
+        const model = await Category.findOne({
+            name
+        })
         try {
-            assert(name!='','401','名称不得为空')
-            assert(!model,'401','该分类已存在')
+            assert(name != '', '401', '名称不得为空')
+            assert(!model, '401', '该分类已存在')
             Category.create(req.body)
             res.send({
-                status:200,
-                msg:'创建成功'
+                status: 200,
+                msg: '创建成功'
             })
-        }catch (err) {
+        } catch (err) {
             res.send({
-                status:err.status,
-                msg:err.message
+                status: err.status,
+                msg: err.message
             })
         }
     })
 
-    router.post('/category/list',verifyToken,async(req,res)=>{
-        
+    router.post('/category/list', verifyToken, async (req, res) => {
+
         const pageNo = Number(req.body.pageNo)
-        const pageSize =Number(req.body.pageSize)
-        const skip =( pageNo-1)*pageSize
+        const pageSize = Number(req.body.pageSize)
+        const skip = (pageNo - 1) * pageSize
         console.log(skip)
         try {
-            assert(pageNo!=''||pageSize!='','401','参数不得为空')
+            assert(pageNo != '' || pageSize != '', '401', '参数不得为空')
             const list1 = await Category.find()
             const count = list1.length
             const list = await Category.find().populate('parentName').skip(skip).limit(pageSize)
             res.send({
-                status:200,
-                msg:'',
-                list:list,
-                count:count
+                status: 200,
+                msg: '',
+                list: list,
+                count: count
             })
-        }catch (err) {
+        } catch (err) {
             res.send({
-                status:err.status,
-                msg:err.message
+                status: err.status,
+                msg: err.message
             })
         }
-       
+
     })
 
-    router.post('/category/optionList',verifyToken,async(req,res)=>{
-        const {pageNo,pageSize}  = req.body
-        console.log(pageSize,pageNo)
+    router.post('/category/optionList', verifyToken, async (req, res) => {
+        const {
+            pageNo,
+            pageSize
+        } = req.body
         const model = await Category.find()
-        console.log(model)
         res.send({
-            status:'200',
-            msg:'',
-            list:model
+            status: '200',
+            msg: '',
+            list: model
         })
     })
 
+    router.post('/category/delete', verifyToken, async (req, res) => {
+        const {
+            id
+        } = req.body
+        await Category.findByIdAndDelete(id, req.body)
+        res.send({
+            status: '200',
+            msg: '删除成功',
+        })
+    })
+
+
+    router.post('/category/update',verifyToken,async(req,res)=>{
+        const {_id} = req.body
+        const model =  await Category.findByIdAndUpdate({_id},req.body)
+        res.send({
+            status: '200',
+            msg: '更新成功',
+        })
+    })
 
     app.use(router)
 }

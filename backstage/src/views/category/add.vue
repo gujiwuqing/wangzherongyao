@@ -57,7 +57,6 @@ export default {
           value:item._id
         }))
       }
-      console.log(this.options);
     },
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {

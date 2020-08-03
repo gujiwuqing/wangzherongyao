@@ -9,7 +9,7 @@
                 </div>
                 <el-dropdown @command="handleCommand">
   <span class="el-dropdown-link">
-    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+     <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar><i class="el-icon-arrow-down el-icon--right"></i>
   </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="a">首页</el-dropdown-item>
@@ -55,12 +55,26 @@
                 if (command=='a'){
                     this.$router.push('/')
                 }else if (command=='c'){
-                    this.$store.dispatch('userLogout')
-                    .then(res=>{
-                        this.$router.push('/login')
-                        this.$message.success('退出成功')
-                    })
+                    this.logout()
                 }
+            },
+            logout(){
+                this.$confirm('确认是否退出登录?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('userLogout')
+                        .then(res=>{
+                            this.$router.push('/login')
+                            this.$message.success('退出成功')
+                        })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消退出'
+                    });
+                });
             }
         }
     }

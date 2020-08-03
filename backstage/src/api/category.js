@@ -23,3 +23,26 @@ export function categoryAdd(data) {
         data:qs.stringify(data)
     })
 }
+export function categoryDelete(data) {
+    return request({
+        url:'category/delete',
+        method:'POST',
+        data:qs.stringify(data)
+    })
+}
+
+export function categoryInfo(params) {
+    return request({
+        url:'category/info',
+        method:'GET',
+        params
+    })
+}
+
+export function categoryUpdate(data) {
+    return request({
+        url:'category/update',
+        method:'POST',
+        data:qs.stringify(data)
+    })
+}

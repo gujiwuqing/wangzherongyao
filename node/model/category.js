@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
         type:String
     },
     parentName:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.SchemaTypes.ObjectId,
         ref:'Category'
     },
     createTime:{

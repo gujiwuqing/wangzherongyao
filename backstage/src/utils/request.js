@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+import store from '../store'
+import Message from "element-ui/packages/message/src/main";
 const request = axios.create({
     baseURL: 'http://127.0.0.1:3000/',
     timeout: 15000,
@@ -9,6 +10,9 @@ const request = axios.create({
 
 // Add a request interceptor
 request.interceptors.request.use(function (config) {
+    if (store.state.token||localStorage.getItem('token')){
+        config.headers.authorization=store.state.token||localStorage.getItem('token')
+    }
     // Do something before request is sent
     return config;
 }, function (error) {
@@ -17,10 +21,17 @@ request.interceptors.request.use(function (config) {
 });
 
 // Add a response interceptor
-request.interceptors.response.use(function (response) {
+request.interceptors.response.use(res=> {
     // Do something with response data
-    return response;
-}, function (error) {
+    const {status,msg}  = res.data
+    if (status!='200') {
+        Message({
+            message:msg,
+            type:'error'
+        })
+    }
+    return res.data;
+}, error =>  {
     // Do something with response error
     return Promise.reject(error);
 });

@@ -7,3 +7,11 @@ export function login(data) {
         data:qs.stringify(data)
     })
 }
+
+export function register(data) {
+    return request({
+        url: 'register',
+        method: 'POST',
+        data:qs.stringify(data)
+    })
+}

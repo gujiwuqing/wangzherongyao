@@ -22,7 +22,6 @@
     </div>
 </template>
 <script>
-    import {login} from "@/api/user";
 
     export default {
         data() {
@@ -48,9 +47,15 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        login(this.ruleForm).then((res) => {
-                            console.log(res);
-                        });
+                        this.loginText='登录中...'
+                        this.$store.dispatch('userLogin',this.ruleForm)
+                        .then(res=>{
+                           if (res.token){
+                               this.loginText='登录'
+                               this.$message.success('登录成功')
+                               this.$router.push('/')
+                           }
+                        })
                     } else {
                         console.log("error submit!!");
                         return false;

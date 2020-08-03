@@ -2,27 +2,31 @@
     <el-menu
             class="el-menu-vertical-demo"
             router
-            default-active="/dashboard"
+            :default-active="$route.path"
             :collapse="isCollapse"
             background-color="#304156"
             text-color="#fff"
             active-text-color="#017fc8"
     >
-        <div v-for="item in menuList">
-            <el-submenu v-if="item.children" :index="item.path":route="item.path">
+        <template v-for="item in menuList">
+            <el-submenu v-if="item.children" :index="item.path" :route="item.path">
                 <template slot="title">
                     <i :class="item.icon"></i>
                     <span slot="title">{{item.title}}</span>
                 </template>
                 <template v-for="i in item.children">
-                    <el-menu-item :index="i.path" :route="i.path">{{i.title}}</el-menu-item>
+                    <el-menu-item :index="i.path" :route="i.path">
+                        <template slot="title">
+                            <span slot="title">{{i.title}}</span>
+                        </template>
+                    </el-menu-item>
                 </template>
             </el-submenu>
             <el-menu-item :index="item.path" v-else :route="item.path">
                 <i :class="item.icon"></i>
                 <span slot="title">{{item.title}}</span>
             </el-menu-item>
-        </div>
+        </template>
     </el-menu>
 </template>
 

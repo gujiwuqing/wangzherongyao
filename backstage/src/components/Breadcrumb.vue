@@ -27,13 +27,11 @@
             },
             getBreadcrumb() {
                 let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
-                console.log(matched);
                 //如果不是首页
                 if (!this.isHome(matched[0])) {
                     matched = [{ path: "/dashboard", meta: { title: "Dashboard" } }].concat(matched);
                 }
                 this.breadList = matched;
-                console.log(this.breadList);
             }
         }
     }

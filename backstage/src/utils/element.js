@@ -26,12 +26,13 @@ import {
     Dropdown,
     Avatar,
     MessageBox,
-    Dialog
+    Dialog,
+    Upload
 } from 'element-ui'
 
 
 Vue.use(Button).use(Menu).use(MenuItem).use(MenuItemGroup).use(Submenu).use(RadioButton).use(RadioGroup).use(Breadcrumb).use(BreadcrumbItem).use(Form).use(FormItem).use(Input).use(Select).use(Card).use(Option).use(OptionGroup).use(Table).use(TableColumn).use(Pagination).use(DropdownMenu).use(DropdownItem).use(Dropdown)
-    .use(Avatar).use(Dialog)
+    .use(Avatar).use(Dialog).use(Upload)
 
 Vue.prototype.$message = Message;
 Vue.prototype.$msgbox=MessageBox

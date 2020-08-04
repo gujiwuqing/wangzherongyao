@@ -11,10 +11,10 @@ app.use(bodyParser.json())
 require('./utils/mongoose')(app)
 require('./route/user')(app)
 require('./route/category')(app)
+require('./route/article')(app)
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.post('/upload', upload.single('file'), async (req, res) => {
     const file = req.file
-    console.log(file);
     file.url = `http://127.0.0.1:3000/uploads/${file.filename}`
     res.send(file)
   })

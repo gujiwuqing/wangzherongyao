@@ -61,6 +61,21 @@
                                 title: '列表'
                             }
                         ]
+                    },
+                    {
+                        path:'/article',
+                        title:'物品管理',
+                        icon:'el-icon-location-outline',
+                        children:[
+                            {
+                                path: '/article/add',
+                                title: '添加',
+                            },
+                            {
+                                path: '/article/list',
+                                title: '列表'
+                            }
+                        ]
                     }
                 ]
             }

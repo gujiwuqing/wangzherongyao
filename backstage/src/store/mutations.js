@@ -7,6 +7,10 @@ const mutations ={
     },
     logout(state){
         state.token=''
+    },
+    changeCollapse(state){
+        state.isCollapse = !state.isCollapse
+        console.log(state.isCollapse);
     }
 }
 export default mutations

@@ -3,7 +3,7 @@
             class="el-menu-vertical-demo"
             router
             :default-active="$route.path"
-            :collapse="isCollapse"
+            :collapse="$store.getters.isCollapse"
             background-color="#304156"
             text-color="#fff"
             active-text-color="#017fc8"
@@ -33,12 +33,6 @@
 <script>
     export default {
         name: "Sidebar",
-        props:{
-            isCollapse:{
-                type:Boolean,
-                default:false
-            }
-        },
         data(){
             return{
                 menuList:[

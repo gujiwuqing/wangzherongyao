@@ -16,7 +16,7 @@
                     prop="icon"
                     label="图片">
                     <template slot-scope="scope">
-                        <img :src="scope.row.icon" alt="" style="width:100%">
+                        <img :src="scope.row.icon" alt="">
                     </template>
             </el-table-column>
             <el-table-column
@@ -42,19 +42,12 @@
                 @change-size="changeSize"
         />
         <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-            <el-form :model="form" label-width="120px">
-                <el-form-item label="上级分类">
-                    <el-select v-model="form.parentName" placeholder="请选择">
-                        <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value"
-                        ></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="活动名称">
+            <el-form :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="活动名称" prop="name">
                     <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="物品图片">
+                    <upload @upload-img="uploadImg" :imageUrl="form.icon"></upload>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -66,13 +59,14 @@
 </template>
 
 <script>
-    import {articleList,articleDelete} from '@/api/article'
-    import pagination from "@/components/pagination";
-
+    import {articleList,articleDelete,articleInfo,articleUpdate} from '@/api/article'
+    import pagination from "_c/pagination";
+    import upload from "_c/upload";
     export default {
         name: "list",
         components: {
-            pagination
+            pagination,
+            upload
         },
         data() {
             return {
@@ -84,7 +78,12 @@
                 },
                 tableData: [],
                 count: 0,
-                form:{}
+                form:{},
+                rules: {
+                    name: [
+                        {required: true, message: '请输入活动名称', trigger: 'blur'},
+                    ],
+                },
             }
         },
         created() {
@@ -111,11 +110,15 @@
                 this.getInfo(id)
             },
             async getInfo(id){
-                const {model} =  await categoryInfo({id:id})
+                const {model} =  await articleInfo({id:id})
                 this.form = model
             },
+            uploadImg(path){
+                this.form.icon = path
+                console.log(this.form.icon);
+            },
             async handleUpdate(){
-               const {status,msg} =  await categoryUpdate(this.form)
+               const {status,msg} =  await articleUpdate(this.form)
             //    if (status==200){
             //        this.getList()
             //        this.$message.success(msg)
@@ -144,7 +147,7 @@
     }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
     .el-pagination {
         margin-top: 20px;
     }

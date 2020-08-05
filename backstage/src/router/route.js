@@ -8,9 +8,9 @@ const routes = [
         redirect: '/dashboard',
         children: [{
             path: 'dashboard',
-            name: 'Dashboard',
+            name: 'Home',
             component:Home,
-            meta: { title: 'Dashboard'}
+            meta: { title: 'Home'}
         }]
     },
     {

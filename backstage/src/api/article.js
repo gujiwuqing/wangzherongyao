@@ -23,3 +23,19 @@ export function articleDelete(data) {
         data:qs.stringify(data)
     })
 }
+
+export function articleInfo(params) {
+    return request({
+        url:'article/info',
+        method:'GET',
+        params
+    })
+}
+
+export function articleUpdate(data) {
+    return request({
+        url:'article/update',
+        method:'POST',
+        data:qs.stringify(data)
+    })
+}

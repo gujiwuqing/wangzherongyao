@@ -15,7 +15,13 @@
         name: "upload",
         data(){
             return{
-                imageUrl:''
+
+            }
+        },
+        props:{
+            imageUrl:{
+                type:String,
+                default:''
             }
         },
         methods:{
@@ -39,7 +45,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
     .avatar-uploader .el-upload {
         border: 1px dashed #d9d9d9;
         border-radius: 6px;
@@ -55,16 +61,18 @@
     .avatar-uploader-icon {
         font-size: 28px;
         color: #8c939d;
-        width: 178px;
-        height: 178px;
+        min-width: 178px;
         line-height: 178px;
+        @include wh(100%,100%);
         text-align: center;
         border: 1px dashed #d9d9d9;
     }
 
     .avatar {
-        width: 178px;
-        height: 178px;
+        min-width: 178px;
+        @include wh(100%,100%);
+        /*width: 100%;*/
+        /*height: 178px;*/
         display: block;
         border: 1px dashed #d9d9d9;
     }

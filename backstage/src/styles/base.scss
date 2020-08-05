@@ -1,9 +1,5 @@
-@import "./variable";
-@import "./mixin";
-*{
-  margin: 0;
-  padding: 0;
-}
+@import "./variable.scss";
+@import "./mixin.scss";
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;

@@ -8,7 +8,6 @@ module.exports = app => {
     router.get('/category/info',verifyToken,async(req,res)=>{
         const {id} = req.query
         const model = await Category.findById({_id:id})
-        console.log(model)
         res.send({
             status: 200,
             msg: '',
@@ -46,7 +45,6 @@ module.exports = app => {
         const pageNo = Number(req.body.pageNo)
         const pageSize = Number(req.body.pageSize)
         const skip = (pageNo - 1) * pageSize
-        console.log(skip)
         try {
             assert(pageNo != '' || pageSize != '', '401', '参数不得为空')
             const list1 = await Category.find()

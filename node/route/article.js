@@ -59,7 +59,7 @@ module.exports = (app)=>{
     } = req.body
     await Article.findByIdAndDelete(id, req.body)
     res.send({
-        status: '200',
+        status: 200,
         msg: '删除成功',
     })
 })

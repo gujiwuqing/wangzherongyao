@@ -9,13 +9,13 @@
             active-text-color="#017fc8"
     >
         <template v-for="item in menuList">
-            <el-submenu v-if="item.children" :index="item.path" :route="item.path">
+            <el-submenu v-if="item.children" :index="item.path" :route="item.path" :key="item.id">
                 <template slot="title">
                     <i :class="item.icon"></i>
                     <span slot="title">{{item.title}}</span>
                 </template>
-                <template v-for="i in item.children">
-                    <el-menu-item :index="i.path" :route="i.path">
+                <template v-for="(i,index) in item.children" >
+                    <el-menu-item :index="i.path" :route="i.path" :key="index">
                         <template slot="title">
                             <span slot="title">{{i.title}}</span>
                         </template>
@@ -45,9 +45,11 @@
                     {
                         icon:'el-icon-menu',
                         path:'/dashboard',
-                        title:'首页'
+                        title:'首页',
+                        id:1
                     },
                     {
+                        id:2,
                         path:'/category',
                         title:'分类管理',
                         icon:'el-icon-location-outline',
@@ -63,9 +65,10 @@
                         ]
                     },
                     {
+                        id:3,
                         path:'/article',
                         title:'物品管理',
-                        icon:'el-icon-location-outline',
+                        icon:'el-icon-goods',
                         children:[
                             {
                                 path: '/article/add',

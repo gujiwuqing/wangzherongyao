@@ -42,7 +42,7 @@ module.exports = app=>{
                 "algorithm": "HS256",
                 expiresIn: 3600 // expires in 24 hours
             });
-            res.send({ status: '200', msg: '登录成功', token: token })
+            res.send({ status: 200, msg: '登录成功', token: token })
         }catch(err){
            res.send({
                status:err.status,

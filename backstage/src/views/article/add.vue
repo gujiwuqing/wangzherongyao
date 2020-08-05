@@ -42,7 +42,7 @@
                 this.$refs[formName].validate(async (valid) => {
                     if (valid) {
                    const {status,msg}  =   await articleAdd(this.form)
-                  if(status=='200'){
+                  if(status==200){
                        this.$message.success(msg)
                        this.$router.push('/article/list')
                   }

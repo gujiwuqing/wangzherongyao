@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '../store'
+import router from "../router";
 import Message from "element-ui/packages/message/src/main";
 const request = axios.create({
     baseURL: 'http://127.0.0.1:3000/',
@@ -24,11 +25,22 @@ request.interceptors.request.use(function (config) {
 request.interceptors.response.use(res=> {
     // Do something with response data
     const {status,msg}  = res.data
-    if (status!='200') {
-        Message({
-            message:msg,
-            type:'error'
-        })
+    console.log(typeof status);
+    switch (String(status)) {
+        case '200':
+            break;
+        case '403':
+            router.push('/login')
+            break;
+        case '402':
+            router.push('/login')
+            break;
+        default:
+            Message({
+                message:msg,
+                type:'error'
+            })
+            break;
     }
     return res.data;
 }, error =>  {

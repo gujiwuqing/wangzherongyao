@@ -5,7 +5,7 @@ const actions = {
     userLogin({commit}, params) {
         return new Promise(((resolve, reject) => {
             login(params).then(res=>{
-                if (res.status==='200'){
+                if (res.status===200){
                     commit('changeToken',res.token)
                     resolve(res)
                 }

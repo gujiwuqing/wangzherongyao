@@ -116,7 +116,7 @@
             },
             async handleUpdate(){
                const {status,msg} =  await categoryUpdate(this.form)
-            //    if (status=='200'){
+            //    if (status==200){
             //        this.getList()
             //        this.$message.success(msg)
             //        this.dialogFormVisible=false
@@ -129,7 +129,7 @@
                     type: 'warning'
                 }).then(async () => {
                     const {status} = await articleDelete({id})
-                    if (status=='200'){
+                    if (status==200){
                         this.$message.success('删除成功')
                         this.getList()
                     }

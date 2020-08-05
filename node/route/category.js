@@ -74,7 +74,7 @@ module.exports = app => {
         } = req.body
         const model = await Category.find()
         res.send({
-            status: '200',
+            status: 200,
             msg: '',
             list: model
         })
@@ -86,7 +86,7 @@ module.exports = app => {
         } = req.body
         await Category.findByIdAndDelete(id, req.body)
         res.send({
-            status: '200',
+            status: 200,
             msg: '删除成功',
         })
     })
@@ -96,7 +96,7 @@ module.exports = app => {
         const {_id} = req.body
         const model =  await Category.findByIdAndUpdate({_id},req.body)
         res.send({
-            status: '200',
+            status: 200,
             msg: '更新成功',
         })
     })

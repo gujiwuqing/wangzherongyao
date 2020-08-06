@@ -33,12 +33,12 @@
                 loginText:'登录',
                 rules: {
                     username: [
-                        {required: true, message: "请输入活动名称", trigger: "blur"},
-                        {min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur"},
+                        {required: true, message: "请输入账号", trigger: "blur"},
+                        {min: 3, max: 11, message: "长度在 3 到 11 个字符", trigger: "blur"},
                     ],
                     password: [
-                        {required: true, message: "请输入活动名称", trigger: "blur"},
-                        {min: 6, max: 11, message: "长度在 3 到 5 个字符", trigger: "blur"},
+                        {required: true, message: "请输入密码", trigger: "blur"},
+                        {min: 3, max: 11, message: "长度在 3 到 11 个字符", trigger: "blur"},
                     ],
                 },
             };
@@ -50,10 +50,13 @@
                         this.loginText='登录中...'
                         this.$store.dispatch('userLogin',this.ruleForm)
                         .then(res=>{
-                           if (res.token){
+                            console.log(res);
+                            if (res.token){
                                this.loginText='登录'
                                this.$message.success('登录成功')
                                this.$router.push('/')
+                           }else {
+                               this.loginText='登录'
                            }
                         })
                     } else {

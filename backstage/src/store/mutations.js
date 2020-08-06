@@ -2,8 +2,10 @@ import state from "./state";
 
 const mutations ={
     changeToken(state,params){
-        state.token = params
-        localStorage.setItem('token',params)
+        let {user,token}  =params
+        state.token = token
+        localStorage.setItem('token',token)
+        state._id = user._id
     },
     logout(state){
         state.token=''

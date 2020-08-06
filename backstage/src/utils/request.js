@@ -25,7 +25,6 @@ request.interceptors.request.use(function (config) {
 request.interceptors.response.use(res=> {
     // Do something with response data
     const {status,msg}  = res.data
-    console.log(typeof status);
     switch (String(status)) {
         case '200':
             break;

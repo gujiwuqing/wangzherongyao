@@ -6,9 +6,9 @@ const actions = {
         return new Promise(((resolve, reject) => {
             login(params).then(res=>{
                 if (res.status===200){
-                    commit('changeToken',res.token)
-                    resolve(res)
+                    commit('changeToken',res)
                 }
+                resolve(res)
             }).catch(error=>{
                 reject(error)
             })

@@ -92,10 +92,11 @@ module.exports = app => {
 
     router.post('/category/update',verifyToken,async(req,res)=>{
         const {_id} = req.body
-        const model =  await Category.findByIdAndUpdate({_id},req.body)
+        const model =  await Category.findByIdAndUpdate({_id},req.body,{new:true})
         res.send({
             status: 200,
             msg: '更新成功',
+            model:model
         })
     })
 

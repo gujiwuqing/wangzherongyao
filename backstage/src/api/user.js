@@ -15,3 +15,11 @@ export function register(data) {
         data:qs.stringify(data)
     })
 }
+
+export function changePassword(data) {
+    return request({
+        url: 'change/password',
+        method: 'POST',
+        data:qs.stringify(data)
+    })
+}

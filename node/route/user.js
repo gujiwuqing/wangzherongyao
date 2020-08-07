@@ -67,10 +67,49 @@ module.exports = app => {
         }
     })
     //个人信息接口
-    router.get('/user', verifyToken, async (req, res) => {
+    router.get('/user/info', verifyToken, async (req, res) => {
         console.log(req.query)
+        const {id}  = req.query
+        const user =  await User.findById({_id:id})
+        res.send({
+            status: 200,
+            msg: '',
+            user
+        })
+        
+    })
+    router.post('/user/update',verifyToken,async(req,res)=>{
+        const {_id} = req.body
+        const user = await User.findByIdAndUpdate({_id},req.body,{new:true})
+        res.send({
+            status: 200,
+            msg: '修改成功',
+            user
+        })
+    })
+    router.post('/user/list',verifyToken,async(req,res)=>{
+        const pageNo = Number(req.body.pageNo)
+        const pageSize = Number(req.body.pageSize)
+        const skip = (pageNo - 1) * pageSize
+        const model = await User.find().skip(skip).limit(pageSize)
+        const count = await (await User.find()).length
+        console.log(count)
+        res.send({
+            status: 200,
+            msg: '',
+            list: model,
+            count:count
+        })
     })
 
+    router.post('/user/delete',verifyToken,async(req,res)=>{
+        const {_id} = req.body
+        await User.findByIdAndDelete({_id})
+        res.send({
+            status: 200,
+            msg: '删除成功',
+        })
+    })
 
     router.post('/change/password', verifyToken, async (req, res) => {      
         try {

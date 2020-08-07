@@ -16,6 +16,18 @@ const schema = new mongoose.Schema({
     createTime:{
         type:Number,
         default: new Date().getTime()
+    },
+    sex:{
+        type:Boolean
+    },
+    age:{
+        type:String
+    },
+    avatar:{
+        type:String
+    },
+    status:{
+        type:Boolean
     }
 })
 

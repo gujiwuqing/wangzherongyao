@@ -1,70 +1,104 @@
 import Home from '../views/Home.vue'
 import layout from '@/layout'
+
 const routes = [
     {
-      path: '/',
-      name: 'layout',
-      component: layout,
+        path: '/',
+        name: 'layout',
+        isMenu: true,
+        icon: 'el-icon-menu',
+        component: layout,
         redirect: '/dashboard',
+        meta: {title: 'Home'},
         children: [{
             path: 'dashboard',
             name: 'Home',
-            component:Home,
-            meta: { title: 'Home'}
+            component: Home,
+            meta: {title: 'Home'},
         }]
     },
     {
         path: '/login',
         name: 'login',
-        component: ()=>import('_v/login'),
+        component: () => import('_v/login'),
     },
     {
-        path:'/category',
-        component:layout,
+        path: '/category',
+        component: layout,
+        isMenu: true,
+        icon: 'el-icon-location-outline',
         redirect: '/category/list',
-        meta:{
-            title:'分类管理'
+        meta: {
+            title: '分类管理'
         },
-        children:[
+        children: [
             {
-                path:'/category/list',
-                component:()=>import('_v/category/list'),
-                meta:{
-                    title:'分类列表'
+                path: '/category/list',
+                component: () => import('_v/category/list'),
+                meta: {
+                    title: '分类列表'
                 },
             },
             {
-                path:'/category/add',
-                component:()=>import('_v/category/add'),
-                meta:{
-                    title:'添加分类'
+                path: '/category/add',
+                component: () => import('_v/category/add'),
+                meta: {
+                    title: '添加分类'
                 },
             }
         ]
     },
     {
-        path:'/article',
-        component:layout,
+        path: '/article',
+        component: layout,
+        isMenu: true,
+        icon: 'el-icon-goods',
         redirect: '/article/list',
-        meta:{
-            title:'物品管理'
+        meta: {
+            title: '物品管理'
         },
-        children:[
+        children: [
             {
-                path:'/article/list',
-                component:()=>import('_v/article/list'),
-                meta:{
-                    title:'物品列表'
+                path: '/article/list',
+                component: () => import('_v/article/list'),
+                meta: {
+                    title: '物品列表'
                 },
             },
             {
-                path:'/article/add',
-                component:()=>import('_v/article/add'),
-                meta:{
-                    title:'添加物品'
+                path: '/article/add',
+                component: () => import('_v/article/add'),
+                meta: {
+                    title: '添加物品'
+                },
+            }
+        ]
+    },
+    {
+        path: '/user',
+        component: layout,
+        isMenu: true,
+        icon: 'el-icon-user',
+        redirect: '/user/list',
+        meta: {
+            title: '人员管理'
+        },
+        children: [
+            {
+                path: '/user/list',
+                component: () => import('_v/user/list'),
+                meta: {
+                    title: '人员列表'
+                },
+            },
+            {
+                path: '/role/add',
+                component: () => import('_v/user/add'),
+                meta: {
+                    title: '添加人员'
                 },
             }
         ]
     }
-  ]
-  export default routes
+]
+export default routes

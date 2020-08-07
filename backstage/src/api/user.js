@@ -23,3 +23,35 @@ export function changePassword(data) {
         data:qs.stringify(data)
     })
 }
+
+export function UserList(data) {
+    return request({
+        url: 'user/list',
+        method: 'POST',
+        data:qs.stringify(data)
+    })
+}
+
+export function UserInfo(params) {
+    return request({
+        url: 'user/info',
+        method: 'GET',
+        params
+    })
+}
+
+export function UserUpdate(data) {
+    return request({
+        url: 'user/update',
+        method: 'POST',
+        data:qs.stringify(data)
+    })
+}
+
+export function UserDelete(data) {
+    return request({
+        url: 'user/delete',
+        method: 'POST',
+        data:qs.stringify(data)
+    })
+}

@@ -12,6 +12,7 @@ require('./utils/mongoose')(app)
 require('./route/user')(app)
 require('./route/category')(app)
 require('./route/article')(app)
+require('./route/role')(app)
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.post('/upload', upload.single('file'), async (req, res) => {
     const file = req.file

@@ -6,15 +6,15 @@ const routes = [
         path: '/',
         name: 'layout',
         isMenu: true,
-        icon: 'el-icon-menu',
+        icon: 'el-icon-eleme',
         component: layout,
+        ischildren:false,
         redirect: '/dashboard',
         meta: {title: 'Home'},
         children: [{
             path: 'dashboard',
             name: 'Home',
-            component: Home,
-            meta: {title: 'Home'},
+            component: Home
         }]
     },
     {
@@ -26,7 +26,8 @@ const routes = [
         path: '/category',
         component: layout,
         isMenu: true,
-        icon: 'el-icon-location-outline',
+        ischildren:true,
+        icon: 'el-icon-menu',
         redirect: '/category/list',
         meta: {
             title: '分类管理'
@@ -53,6 +54,7 @@ const routes = [
         component: layout,
         isMenu: true,
         icon: 'el-icon-goods',
+        ischildren:true,
         redirect: '/article/list',
         meta: {
             title: '物品管理'
@@ -78,6 +80,7 @@ const routes = [
         path: '/user',
         component: layout,
         isMenu: true,
+        ischildren:true,
         icon: 'el-icon-user',
         redirect: '/user/list',
         meta: {

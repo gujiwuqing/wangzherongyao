@@ -23,10 +23,11 @@
         },
         methods:{
             isHome(route) {
-                return route.name === "Home";
+                return route.name === "layout";
             },
             getBreadcrumb() {
                 let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
+                console.log(matched)
                 //如果不是首页
                 if (!this.isHome(matched[0])) {
                     matched = [{ path: "/dashboard", meta: { title: "Home" } }].concat(matched);

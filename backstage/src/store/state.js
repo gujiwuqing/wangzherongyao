@@ -1,6 +1,8 @@
 const state = {
     token:''||localStorage.getItem('token '),
     isCollapse:false,
-    _id:''
+    _id:'',
+    avatar:'',
+    username:''
 }
 export default state

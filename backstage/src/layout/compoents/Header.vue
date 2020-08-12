@@ -8,7 +8,9 @@
             <screenful></screenful>
             <el-dropdown @command="handleCommand">
   <span class="el-dropdown-link">
-     <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar><i
+     <el-avatar :src="avatar"></el-avatar>
+     <span>{{$store.state.username}}</span>
+     <i
           class="el-icon-arrow-down el-icon--right"></i>
   </span>
                 <el-dropdown-menu slot="dropdown">
@@ -53,6 +55,7 @@
         data() {
             return {
                 dialogFormVisible:false,
+                avatar:this.$store.state.avatar||'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
                 form:{
                     oldPassword:'',
                     newPassword:'',
@@ -149,5 +152,15 @@
 
     .fangda {
         margin-right: 20px;
+    }
+   /deep/ .el-dropdown-link{
+        display: flex;
+        align-items: center;
+        img{
+            margin-right: 20px;
+        }
+        span:first-child{
+            margin-right: 20px;
+        }
     }
 </style>

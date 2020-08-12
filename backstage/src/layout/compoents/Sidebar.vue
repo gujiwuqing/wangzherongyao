@@ -9,7 +9,7 @@
             active-text-color="#017fc8"
     >
         <template v-for="item in menuList">
-            <el-submenu v-if="item.children" :index="item.path" :route="item.path" :key="item.id">
+            <el-submenu v-if="item.children&&item.ischildren" :index="item.path" :route="item.path" :key="item.id">
                 <template slot="title">
                     <i :class="item.icon"></i>
                     <span slot="title">{{item.meta.title}}</span>

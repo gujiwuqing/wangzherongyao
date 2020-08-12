@@ -6,6 +6,8 @@ const mutations ={
         state.token = token
         localStorage.setItem('token',token)
         state._id = user._id
+        state.avatar = user.avatar
+        state.username = user.username
     },
     logout(state){
         state.token=''

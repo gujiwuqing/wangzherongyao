@@ -3,7 +3,7 @@ const schema = new mongoose.Schema({
     name:{
         type:String
     },
-    roleId:{
+    typeId:{
         type:String
     }
 })

@@ -50,5 +50,7 @@
         margin: 0 20px;
     }
 
-
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+    }
 </style>

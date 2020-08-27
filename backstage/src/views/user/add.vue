@@ -27,7 +27,7 @@
     <el-form-item label="年龄" prop="age">
       <el-input v-model="ruleForm.age"></el-input>
     </el-form-item>
-    <el-form-item label="权限">
+    <el-form-item label="权限" prop="role">
       <el-select v-model="ruleForm.role" placeholder="请选择">
         <el-option v-for="item in roleLists" :key="item._id" :label="item.name" :value="item._id"></el-option>
       </el-select>
@@ -73,6 +73,7 @@ export default {
         avatar: [{ required: true, message: "请先上传头像", trigger: "blur" }],
         sex: [{ required: true, message: "请选择性别", trigger: "change" }],
         status: [{ required: true, message: "请选择状态", trigger: "change" }],
+        role: [{ required: true, message: "请选择角色", trigger: "change" }]
       },
     };
   },

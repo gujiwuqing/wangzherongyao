@@ -28,6 +28,10 @@ const schema = new mongoose.Schema({
     },
     status:{
         type:Boolean
+    },
+    role:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:'Role'
     }
 })
 

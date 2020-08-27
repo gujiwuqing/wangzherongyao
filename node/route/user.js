@@ -80,6 +80,7 @@ module.exports = app => {
     })
     router.post('/user/update',verifyToken,async(req,res)=>{
         const {_id} = req.body
+        console.log(req.body);
         const user = await User.findByIdAndUpdate({_id},req.body,{new:true})
         res.send({
             status: 200,
@@ -91,7 +92,7 @@ module.exports = app => {
         const pageNo = Number(req.body.pageNo)
         const pageSize = Number(req.body.pageSize)
         const skip = (pageNo - 1) * pageSize
-        const model = await User.find().skip(skip).limit(pageSize)
+        const model = await User.find().skip(skip).limit(pageSize).populate('role')
         const count = await (await User.find()).length
         console.log(count)
         res.send({

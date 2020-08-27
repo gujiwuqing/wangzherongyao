@@ -2,6 +2,7 @@
   <div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="username" label="用户名"></el-table-column>
+      <el-table-column prop="role.name" label="角色"></el-table-column>
       <el-table-column prop="sex" label="性别">
         <template slot-scope="scope">
           <span>{{scope.row.sex?'男':'女'}}</span>
@@ -51,8 +52,8 @@
         <el-form-item label="年龄" prop="age">
           <el-input v-model="form.age"></el-input>
         </el-form-item>
-        <el-form-item label='权限'>
-          <el-select v-model="value" placeholder="请选择">
+        <el-form-item label='角色' prop="role">
+          <el-select v-model="form.role" placeholder="请选择">
             <el-option
               v-for="item in roleLists"
               :key="item._id"
@@ -106,15 +107,18 @@ export default {
         avatar: [{ required: true, message: "请先上传头像", trigger: "blur" }],
         sex: [{ required: true, message: "请选择性别", trigger: "change" }],
         status: [{ required: true, message: "请选择状态", trigger: "change" }],
+        role: [{ required: true, message: "请选择角色", trigger: "change" }],
       },
     };
   },
   mounted() {
     this.getList();
+    this.getRole()
   },
   methods: {
     async getRole() {
       const { list } = await roleList();
+      console.log(list);
       this.roleLists = list;
     },
     async getList() {

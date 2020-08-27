@@ -29,7 +29,7 @@ module.exports = app=>{
         console.log(list)
         res.send({
             status: 200,
-            msg: '添加成功',
+            msg: '获取成功',
             list:list
         })
     })

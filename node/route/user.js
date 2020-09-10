@@ -42,7 +42,7 @@ module.exports = app => {
         } = req.body
         const user = await User.findOne({
             username
-        })
+        }).populate('role')
         try {
             assert(username != '' || password != '', 401, '参数不得为空')
             assert(user, '401', '账号不存在')

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div id="main" style="width: 100%;height: 300px;"></div>
+    <div id="main" style="width: 100%;height: 50vh;"></div>
 </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
   name: 'Home',
     data(){
       return{
+          myEchart:null,
           option:{
               title: {
                   text: '堆叠区域图'
@@ -98,11 +99,17 @@ export default {
     },
     mounted() {
       this.getCharts()
+       if (this.myEchart){
+           window.onresize = function () {
+               this.myEchart = this.$echarts.init(document.getElementById('main'))
+                   .resize();
+           }
+       }
     },
     methods:{
       getCharts(){
-          let myEchart = this.$echarts.init(document.getElementById('main'))
-          myEchart.setOption(this.option)
+          this.myEchart = this.$echarts.init(document.getElementById('main'))
+          this.myEchart.setOption(this.option)
       }
     }
 }

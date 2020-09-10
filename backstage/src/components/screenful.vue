@@ -21,13 +21,13 @@
         },
         methods: {
             click() {
-                if (!screenfull.enabled) {
-                    this.$message({
-                        message: '浏览器不能全屏',
-                        type: 'warning'
-                    })
-                    return false
-                }
+                // if (!screenfull.enabled) {
+                //     this.$message({
+                //         message: '浏览器不能全屏',
+                //         type: 'warning'
+                //     })
+                //     return false
+                // }
                 screenfull.toggle()
             },
             change() {

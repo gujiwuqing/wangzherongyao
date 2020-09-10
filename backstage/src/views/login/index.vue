@@ -77,7 +77,7 @@
         background: url('../../assets/img/banner.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-        @include wh(100%,100%);
+        @include wh(100%,100vh);
         display: flex;
         justify-content: center;
         align-items: center;
